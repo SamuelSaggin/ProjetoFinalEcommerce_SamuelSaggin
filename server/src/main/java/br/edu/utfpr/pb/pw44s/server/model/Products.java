@@ -1,0 +1,45 @@
+package br.edu.utfpr.pb.pw44s.server.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.util.Objects;
+
+@Entity
+@Table(name = "tb_products")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+public class Products {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @NotNull
+    private String name;
+    @NotNull
+    @Column(length = 1024)
+    private String description;
+    @NotNull
+    private BigDecimal price;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Products products = (Products) o;
+        return Objects.equals(id, products.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+}

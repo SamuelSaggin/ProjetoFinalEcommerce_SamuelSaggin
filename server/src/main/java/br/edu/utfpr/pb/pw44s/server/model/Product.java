@@ -14,7 +14,7 @@ import java.util.Objects;
 @Builder
 @Getter
 @Setter
-public class Products {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +33,8 @@ public class Products {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Products products = (Products) o;
-        return Objects.equals(id, products.id);
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
     }
 
     @Override

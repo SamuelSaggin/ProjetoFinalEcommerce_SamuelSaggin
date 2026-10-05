@@ -31,8 +31,8 @@ public class User implements UserDetails {
 
     @NotNull
     @Size(min = 4, max = 50)
-    @Column(length = 50, name = "display_name")
-    private String displayName;
+    @Column(length = 50, name = "email")
+    private String email;
 
     @NotNull
     @Size(min = 6)

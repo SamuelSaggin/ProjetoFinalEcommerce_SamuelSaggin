@@ -26,15 +26,6 @@ public class CategoryController {
         this.categoryMapper = categoryMapper;
     }
 
-    @PostMapping
-    public ResponseEntity<CategoryDTO> save(@RequestBody CategoryDTO categoryDTO) {
-        Category category = categoryService.save(categoryMapper.toEntity(categoryDTO));
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                categoryMapper.toDto(category)
-        );
-    }
-
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll() {
         return ResponseEntity.ok(
@@ -54,12 +45,6 @@ public class CategoryController {
         } else {
             return ResponseEntity.noContent().build();
         }
-    }
-
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
-        categoryService.deleteById(id);
     }
 
     @GetMapping("page")

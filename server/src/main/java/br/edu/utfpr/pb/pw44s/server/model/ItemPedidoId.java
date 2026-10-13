@@ -3,8 +3,12 @@ package br.edu.utfpr.pb.pw44s.server.model;
 import java.io.Serializable;
 import java.util.Objects;
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
     @Embeddable
+    @Getter
+    @Setter
     public class ItemPedidoId implements Serializable {
         private Long pedidoId;
         private Long produtoId;

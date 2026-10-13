@@ -19,18 +19,27 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private User usuario;
     @NotNull
-    private Long usuario_id;
-    @NotNull
+    @Size(min = 1, max = 120)
     private String logradouro;
     @NotNull
+    @jakarta.validation.constraints.Positive
     private int numero;
     @NotNull
+    @Size(min = 1, max = 80)
+    private String bairro;
+    @NotNull
+    @Size(min = 1, max = 80)
+    private String cidade;
+    @Size(max = 120)
     private String complemento;
 
     @NotNull
     @Size(min = 8, max = 9)
-    @Column(length = 50, nullable = false)
+    @Column(length = 9, nullable = false)
     private String cep;
 
     @Override

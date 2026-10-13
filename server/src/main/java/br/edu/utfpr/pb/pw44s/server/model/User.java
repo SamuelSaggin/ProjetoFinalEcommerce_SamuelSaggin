@@ -26,12 +26,12 @@ public class User implements UserDetails {
 
     @NotNull
     @Size(min = 4, max = 50)
-    @Column(length = 50)
+    @Column(length = 50, nullable = false, unique = true)
     private String username;
 
     @NotNull
     @Size(min = 4, max = 50)
-    @Column(length = 50, name = "email")
+    @Column(length = 50, name = "email", nullable = false, unique = true)
     private String email;
 
     @NotNull

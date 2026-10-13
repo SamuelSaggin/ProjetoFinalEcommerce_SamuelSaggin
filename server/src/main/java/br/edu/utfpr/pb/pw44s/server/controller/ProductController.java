@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("product")
+@RequestMapping({"/product", "/products"})
 public class ProductController {
 
     private final IProductService productService;
@@ -25,15 +25,6 @@ public class ProductController {
     public ProductController(IProductService productService, ProductMapper productMapper) {
         this.productService = productService;
         this.productMapper = productMapper;
-    }
-
-    @PostMapping
-    public ResponseEntity<ProductDTO> save(@Valid @RequestBody ProductDTO productDTO) {
-        Product product = productService.save(productMapper.toEntity(productDTO));
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                productMapper.toDto(product)
-        );
     }
 
     @GetMapping
@@ -55,12 +46,6 @@ public class ProductController {
         } else {
             return ResponseEntity.noContent().build();
         }
-    }
-
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
-        productService.deleteById(id);
     }
 
     @GetMapping("page")
